@@ -7,11 +7,11 @@ import { Button } from '../components/Button'
 
 export default function newRoom() {
     return (
-      <div className="flex items-stretch h-screen">
+      <div className="flex-col sm:flex-row items-stretch h-screen">
               <aside className="flex flex-col flex-7 justify-center bg-purple text-white py-28 px-20">
                   <Image className="max-w-xs" src={illustrationImg} alt="ilustração simbolizando pergunta e resposta" />
-                  <p className="text-6x1 font-bold font-Poppins mt-4" >Crie Salas de Q&amp;A ao-vivo</p>
-                  <p className="text-4x1 leading-8 mt-4 text-white">Tire as dúvidas de sua audiência em tempo-real</p>
+                  <p className="text-2x1 sm:text-4x1 font-bold font-Poppins mt-4" >Crie Salas de Q&amp;A ao-vivo</p>
+                  <p className="text-lg sm:text-2x1 leading-8 mt-4 text-white">Tire as dúvidas de sua audiência em tempo-real</p>
               </aside>
               <main className="flex flex-8 px-8 justify-center items-center">
                 <div className="flex flex-col w-screen max-w-xs items-stretch text-center" >
