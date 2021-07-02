@@ -25,7 +25,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex-col sm:flex-row items-stretch h-screen">
+    <div className="flex-col sm:flex-row flex items-stretch h-screen">
             <aside className="flex flex-col flex-7 justify-center bg-purple text-white py-28 px-20">
                 <Image className="max-w-xs" src={illustrationImg} alt="ilustração simbolizando pergunta e resposta" />
                 <p className="text-2x1 sm:text-4x1 font-bold font-Poppins mt-4" >Crie Salas de Q&amp;A ao-vivo</p>
