@@ -9,7 +9,7 @@ export function Button(props: ButtonProps) {
             className=" 
                 flex items-center 
                 justify-center 
-                w-full mt-8 h-12
+                w-full h-12
                 rounded-md font-medium 
                 bg-purple-500 hover:bg-purple-600
                 transition

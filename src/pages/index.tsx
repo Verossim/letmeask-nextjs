@@ -1,25 +1,48 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useContext } from "react";
-import { useRouter } from "next/router";
+import Router from "next/router";
+import { FormEvent, useState } from "react";
+
+import { database } from "../services/firebase";
 
 import illustrationImg from "../assets/images/illustration.svg";
 import logoImg from "../assets/images/logo.svg";
 import googleIconImg from "../assets/images/google-icon.svg";
+
 import { Button } from "../components/Button";
-import { AuthContext } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 
-export default function Home() {
-  const router = useRouter();
-  const { signInWithGoogle, user } = useContext(AuthContext);
+const Home: React.FC = () => {
+  const { signInWithGoogle, user } = useAuth()
+  const [roomCode, setRoomCode] = useState('')
 
-  const handleCreateRoom = async () => {
+ async function handleCreateRoom() {
     if (!user) {
-      await signInWithGoogle();
+      await signInWithGoogle()
     }
 
-    router.push("/new");
-  };
+    Router.push("/rooms/new")
+  }
+
+  async function handleJoinRoom(event: FormEvent) {
+    event.preventDefault()
+
+    if (roomCode.trim() === '') {
+      return;
+    }
+
+    const roomRef = await database.ref(`rooms/${roomCode}`).get()
+
+    if (!roomRef.exists()) {
+      alert('Room does not exist.')
+      return;
+    }
+
+    Router.push({
+      pathname: '/rooms/[id]',
+      query: {id: roomCode}
+    })
+  }
 
   return (
     <div className="flex-col sm:flex-row flex items-stretch h-screen">
@@ -73,13 +96,15 @@ export default function Home() {
           >
             ou entre em uma sala
           </div>
-          <form>
+          <form onSubmit={handleJoinRoom}>
             <input
               type="text"
               placeholder="Digite o código da sala"
               className="
                     h-12 rounded-md px-4 bg-white border border-solid w-full
-                    focus:border-opacity-0"
+                    focus:border-opacity-0 mb-8"
+              onChange={e => setRoomCode(e.target.value)}
+              value={roomCode}
             />
             <Button type="submit">Entrar na sala</Button>
           </form>
@@ -88,3 +113,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default Home

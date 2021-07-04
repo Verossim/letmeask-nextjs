@@ -22,6 +22,9 @@ module.exports = {
       fontSize: {
         '2x1': '1.5rem',
         '4x1': '2.25rem'
+      },
+      minHeight: {
+        '130': '130px'
       }
     },
   },
