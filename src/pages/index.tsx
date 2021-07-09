@@ -38,6 +38,11 @@ const Home: React.FC = () => {
       return;
     }
 
+    if (roomRef.val().endedAt) {
+      alert('Room already closed')
+      return;
+    }
+
     Router.push({
       pathname: '/rooms/[id]',
       query: {id: roomCode}
