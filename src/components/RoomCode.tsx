@@ -18,7 +18,8 @@ export function RoomCode (props: RoomCodeProps) {
             bg-white
             border-solid border border-purple-600
             cursor-pointer
-            flex"
+            flex
+            active:animate-ping"
             onClick={copyRoomCodeToClipboard}
         >
             <div 
